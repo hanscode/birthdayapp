@@ -46,7 +46,7 @@ def upcoming_birthdays(people_list, days):
             # Build a dictionary with the person's name, birthday date, difference in days, and turning age
             upcoming_list.append({
                 'name': person['name'],
-                'birthday_date': birthday_this_year.strftime("%B %d"),
+                'birthday_date': birthday_dt.strftime("%B %d"),
                 'difference': difference.days,
                 'turning_age': turning_age
             })
