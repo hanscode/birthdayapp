@@ -28,6 +28,9 @@ def upcoming_birthdays(people_list, days):
     # Template:
     # PERSON turns AGE in X days on MONTH DAY
     # PERSON turns AGE in X days on MONTH DAY
+
+    upcoming_list = []
+
     for person in people_list:
         # birthday_dt represents the birthday of the person
         birthday_dt = date_parsing(person['birthday'])
@@ -40,7 +43,17 @@ def upcoming_birthdays(people_list, days):
         turning_age = age_now.years + 1
 
         if 0 < difference.days < days:
-            print(f"{person['name']} turns {turning_age} in {difference.days} days on {birthday_dt.strftime('%B %d')}")
+            # add the person to the upcoming_list
+            upcoming_list.append(person)
+            # add the difference as a key to the person dictionary
+            person['difference'] = difference.days
+            # add the turning age as a key to the person dictionary
+            person['turning_age'] = turning_age
+            # add the birthday date as a key to the person dictionary
+            person['birthday_date'] = birthday_dt.strftime("%B %d")
+        
+    for person in sorted(upcoming_list, key=lambda x: x['difference']):
+        print(f"{person['name']} turns {person['turning_age']} in {person['difference']} days on {person['birthday_date']}")
 
 def display_age(person):
     # TODO: write the code to display the age of a person
