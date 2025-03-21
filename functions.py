@@ -43,14 +43,13 @@ def upcoming_birthdays(people_list, days):
         turning_age = age_now.years + 1
 
         if 0 < difference.days < days:
-            # add the person to the upcoming_list
-            upcoming_list.append(person)
-            # add the difference as a key to the person dictionary
-            person['difference'] = difference.days
-            # add the turning age as a key to the person dictionary
-            person['turning_age'] = turning_age
-            # add the birthday date as a key to the person dictionary
-            person['birthday_date'] = birthday_dt.strftime("%B %d")
+            # Build a dictionary with the person's name, birthday date, difference in days, and turning age
+            upcoming_list.append({
+                'name': person['name'],
+                'birthday_date': birthday_this_year.strftime("%B %d"),
+                'difference': difference.days,
+                'turning_age': turning_age
+            })
         
     for person in sorted(upcoming_list, key=lambda x: x['difference']):
         print(f"{person['name']} turns {person['turning_age']} in {person['difference']} days on {person['birthday_date']}")
