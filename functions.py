@@ -5,8 +5,13 @@ import datetime
 # It takes a string as input, which is the birthdate of the person
 # It returns a datetime object
 def date_parsing(birthdate):
-    date = datetime.datetime.strptime(birthdate, "%Y-%m-%d")
-    return date
+    format_string = "%Y-%m-%d"
+    try:
+        date = datetime.datetime.strptime(birthdate, format_string)
+        return date
+    except ValueError:
+        # If the date format is invalid, raise a ValueError
+        raise ValueError(f"Invalid date format: '{birthdate}'. Expected format is YYYY-MM-DD.")
 
 # This function is used to calculate the age of a person
 # It takes a string as input, which is the birthdate of the person
